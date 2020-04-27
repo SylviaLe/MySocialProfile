@@ -16,14 +16,14 @@ public class MySocialProfile
     {
         Scanner user = new Scanner(System.in);
 
+	System.out.print("Please enter your name: ");
+        this.name = user.next();
+	    
         System.out.print("Please enter your email address: ");
         this.email = user.next();
 
         System.out.print("Please enter a password for your account: ");
         this.pass = user.next();
-
-        System.out.print("Please enter your name: ");
-        this.name = user.next();
 
         System.out.print("Please enter your class year: ");
         this.classYear = user.nextInt();
