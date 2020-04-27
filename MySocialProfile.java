@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class MySocialProfile
 {
@@ -14,8 +9,8 @@ public class MySocialProfile
     public String pass;
     public int classYear;
     //public Event events;
-    public SinglyLinkedStack<String> posts;
-    public ArrayList<String> friends;
+    public SinglyLinkedStack<String> posts = new SinglyLinkedStack<>();
+    public ArrayList<String> friends = new ArrayList<>();
     
     public void createNewAcc()
     {
@@ -44,30 +39,30 @@ public class MySocialProfile
 	    FileIO.doStuff("userdata.txt");
     }
 
-    public void post(String newPost)
+    public void post()
     {
-    	//Scanner in = new Scanner(System.in);
-    	//System.out.print("What is on your mind: ");
-        //String newPost = in.next();
-        //in.nextLine();   //to catch carriage
+    	Scanner in = new Scanner(System.in);
+    	System.out.print("What is on your mind: ");
+        String newPost = in.next();
+        in.nextLine();   //to catch carriage
     	
         posts.push(newPost);
-        //in.close();
+        in.close();
     }
     //addEvent()
-    public void manageFriend(String friend)
+    public void manageFriend()
     {
-    	//Scanner in = new Scanner(System.in);
-    	//System.out.print("Please enter your friend's email address: ");
-        //String friend = in.next();
-        //in.nextLine();    //to catch carriage
+    	Scanner in = new Scanner(System.in);
+    	System.out.print("Please enter your friend's email address: ");
+        String friend = in.next();
+        in.nextLine();    //to catch carriage
         
         if (friends.contains(friend))
             friends.remove(friend);
         else 
             friends.add(friend);
         
-        //in.close();
+        in.close();
     }
     
     public void logout()   //when the user logout, write everything into the file
@@ -93,9 +88,9 @@ public class MySocialProfile
     {
         MySocialProfile profile = new MySocialProfile();
         profile.createNewAcc();
-        //profile.loadprofile();
-        profile.post("Hello World!");
-        profile.manageFriend("kle2@conncoll.edu");
+        profile.loadprofile();
+        profile.post();
+        profile.manageFriend();
         profile.logout();
     }
 }
