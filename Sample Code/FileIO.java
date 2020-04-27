@@ -62,6 +62,7 @@ class FileIO{
 					while (eScanner.hasNext()){ //while there are words left...
 						desc = desc + " " + eScanner.next(); //reads the description one word at a time
 					}
+					eventsScanner.close();
 					System.out.println("Description: " + desc);
 				}				
 				
@@ -84,6 +85,7 @@ class FileIO{
 					//(you may or may not be using an array to store the list of timeline messages.)
 					i++;
 				}
+				wallMsgScanner.close();
 				System.out.println();
 				/*	test code for printing contents of array
 				for (int j = 0; j < wallMsgArray.length; j++){
@@ -110,6 +112,7 @@ class FileIO{
 					i++;
 				}
 				System.out.println();
+				friendScanner.close();
 				System.out.println("+++++++++++++++++++++++++++");
 				
 			}
