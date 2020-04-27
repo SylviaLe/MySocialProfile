@@ -70,7 +70,6 @@ public class MySocialProfile
             {
                 e = eventsScanner.next();
                 e = e.substring(1, e.length()); //cut off the leading quotation mark of each event
-                System.out.println(e);
                 eventsArray[i] = e;
                 i++;
 
@@ -140,28 +139,41 @@ public class MySocialProfile
 				
     }
 
-    public void post(String s)
+    public void post()
     {
-        posts.push(s);
+    	Scanner in = new Scanner(System.in);
+    	System.out.print("What is on your mind: ");
+        String newPost = in.next();
+        //in.nextLine();   //to catch carriage
+    	
+        posts.push(newPost);
+        in.close();
     }
     //addEvent()
-    public void manageFriend(String s)
+    public void manageFriend()
     {
-        if (friends.contains(s))
-            friends.remove(s);
+    	Scanner in = new Scanner(System.in);
+    	System.out.print("Please enter your friend's email address: ");
+        String friend = in.next();
+        //in.nextLine();    //to catch carriage
+        
+        if (friends.contains(friend))
+            friends.remove(friend);
         else 
-            friends.add(s);
+            friends.add(friend);
+        
+        in.close();
     }
     
     public void logout()   //when the user logout, write everything into the file
     {
         try 
         {
-			FileWriter fileOut = new FileWriter("newFile");
+			FileWriter fileOut = new FileWriter("newFile.txt");
 			BufferedWriter bufWriter = new BufferedWriter(fileOut);
 			
 			bufWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + posts.toString() + "\n" + friends.toString());
-		
+			//for the moment, havent write the event in yet
 			bufWriter.close();
             fileOut.close();
         }
@@ -175,8 +187,10 @@ public class MySocialProfile
     public static void main(String[] args)
     {
         MySocialProfile profile = new MySocialProfile();
-        //newProfile.createNewAcc();
-        profile.loadprofile();
-        //profile.logout();
+        profile.createNewAcc();
+        //profile.loadprofile();
+        //profile.post();
+        //profile.manageFriend();
+        profile.logout();
     }
 }
