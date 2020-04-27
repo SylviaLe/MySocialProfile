@@ -118,7 +118,6 @@ public class MySocialProfile
                     {
                         e = eventsScanner.next();
                         e = e.substring(1, e.length()); //cut off the leading quotation mark of each event
-                        System.out.println(e);
                         eventsArray[i] = e;
                         i++;
         
@@ -130,12 +129,13 @@ public class MySocialProfile
                         String min = Integer.toString(eScanner.nextInt());
         
                         String date = month + '/' + day +'/' + year + ' ' + hour + ':' + min;
+			String[] dateKey = {month, day, year, hour, min};
                         String desc = ""; //to hold the description of the event
                         while (eScanner.hasNext()){ //while there are words left...
                             desc = desc + " " + eScanner.next(); //reads the description one word at a time
                         }
                         System.out.println(date + ": " + desc);
-                        //this.events.addEvent(date, desc)
+                        //this.events.putEvent(dateKey, desc)
                     }			
                     eventsScanner.close();
         
