@@ -28,11 +28,15 @@ class FileIO{
 				
 				System.out.println("+++++++++++++++++++++++++++");
 				String events = lineScanner.nextLine(); //read the entire line of event data
+				
+				
+				
 				//now create a secondary scanner to actually scan through this list of events
 				// to break them up into individual events
 				Scanner eventsScanner = new Scanner(events);
 				String[] eventsArray = new String[10]; //will store the individual events for now
 				int i = 0; //array index counter
+				
 				//on this line of data, events are in quotes and delimited by commas, 
 				// so we tell the scanner to look for a quotation mark followed by a comma (",)
 				// to delimit each event

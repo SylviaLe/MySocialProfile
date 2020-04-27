@@ -11,7 +11,7 @@ public abstract class App
     
     //some note on event loader: 
     /* a = min();
-    while (currentTime - min.getKey().getTime <= 0) {removeMin(), a = min()}
+    while (currentTime - min.getKey().getTime <= 0) {removeMin(), a = min()}*/
     
     
 }
