@@ -139,22 +139,22 @@ public class MySocialProfile
 				
     }
 
-    public void post()
+    public void post(String newPost)
     {
-    	Scanner in = new Scanner(System.in);
-    	System.out.print("What is on your mind: ");
-        String newPost = in.next();
+    	//Scanner in = new Scanner(System.in);
+    	//System.out.print("What is on your mind: ");
+        //String newPost = in.next();
         //in.nextLine();   //to catch carriage
     	
         posts.push(newPost);
-        in.close();
+        //in.close();
     }
     //addEvent()
-    public void manageFriend()
+    public void manageFriend(String friend)
     {
-    	Scanner in = new Scanner(System.in);
-    	System.out.print("Please enter your friend's email address: ");
-        String friend = in.next();
+    	//Scanner in = new Scanner(System.in);
+    	//System.out.print("Please enter your friend's email address: ");
+        //String friend = in.next();
         //in.nextLine();    //to catch carriage
         
         if (friends.contains(friend))
@@ -162,7 +162,7 @@ public class MySocialProfile
         else 
             friends.add(friend);
         
-        in.close();
+        //in.close();
     }
     
     public void logout()   //when the user logout, write everything into the file
@@ -189,8 +189,8 @@ public class MySocialProfile
         MySocialProfile profile = new MySocialProfile();
         profile.createNewAcc();
         //profile.loadprofile();
-        //profile.post();
-        //profile.manageFriend();
+        profile.post("Hello World!");
+        profile.manageFriend("kle2@conncoll.edu");
         profile.logout();
     }
 }
