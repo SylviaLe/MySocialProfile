@@ -129,14 +129,13 @@ public class MySocialProfile
                         String min = Integer.toString(eScanner.nextInt());
         
                         String date = month + '/' + day +'/' + year + ' ' + hour + ':' + min;
-                        String[] dateKey = {month, day, year, hour, min};
+			            String[] dateKey = {month, day, year, hour, min};
                         String desc = ""; //to hold the description of the event
                         while (eScanner.hasNext()){ //while there are words left...
                             desc = desc + " " + eScanner.next(); //reads the description one word at a time
                         }
                         //this.events.addEvent(dateKey, desc)
                         System.out.println(date + ": " + desc);
-                        
                     }			
                     eventsScanner.close();
         
