@@ -42,30 +42,30 @@ public class MySocialProfile
 	    doStuff();
     }
 
-    public void post()
+    public void post(String newPost)  //use the parameter one. ask for info from main
     {
-    	Scanner in = new Scanner(System.in);
+    	/*Scanner in = new Scanner(System.in);
     	System.out.print("What is on your mind: ");
         String newPost = in.next();
-        in.nextLine();   //to catch carriage
+        in.nextLine();   //to catch carriage */
     	
         posts.push(newPost);
-        in.close();
+        //in.close();
     }
     //addEvent()
-    public void manageFriend()
+    public void manageFriend(String friend)  //use the parameter one. ask for info from main
     {
-    	Scanner in = new Scanner(System.in);
+    	/*Scanner in = new Scanner(System.in);
     	System.out.print("Please enter your friend's email address: ");
         String friend = in.next();
-        in.nextLine();    //to catch carriage
+        in.nextLine();    //to catch carriage */
         
         if (friends.contains(friend))
             friends.remove(friend);
         else 
             friends.add(friend);
         
-        in.close();
+        //in.close();
     }
     
     public void logout()   //when the user logout, write everything into the file
@@ -134,8 +134,11 @@ public class MySocialProfile
                         while (eScanner.hasNext()){ //while there are words left...
                             desc = desc + " " + eScanner.next(); //reads the description one word at a time
                         }
+                        //if (!this.events.passEvent(dateKey))
+                        //{
                         //this.events.addEvent(dateKey, desc)
                         System.out.println(date + ": " + desc);
+                        //}
                     }			
                     eventsScanner.close();
         
@@ -191,10 +194,10 @@ public class MySocialProfile
     public static void main(String[] args)
     {
         MySocialProfile profile = new MySocialProfile();
-        profile.createNewAcc();
+        //profile.createNewAcc();
         profile.loadprofile();
-        profile.post();
-        profile.manageFriend();
+        profile.post("Hello World");
+        profile.manageFriend("kle2@conncol.edu");
         profile.logout();
     }
 }
