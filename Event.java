@@ -10,20 +10,18 @@ public abstract class Event
     toString()  //use to write into the file, in mm dd yy hh mm format
     addEvent(date[], description) //use when load from file, can call out from addEvent too
 
-    public HeapPriorityQueue<ArrayList, String> events = new HeapPriorityQueue<>();
+    public HeapPriorityQueue<ArrayList, String> events = new HeapPriorityQueue<>(DateComparator);
 
-    public int compare(Entry<> a, Entry<> b)
+    public int compare(ArrayList dateKeyA, ArrayList dateKeyB)
     {
-        ArrayList dateKeyA = a.getKey();
-        ArrayList dateKeyB = b.getKey();
-
         Calendar dateA = Calendar.getInstance();
         dateA.set(dateKeyA.get(2), dateKeyA.get(0), dateKeyA.get(1), dateKeyA.get(3), dateKeyA.get(4));
 
         Calendar dateB = Calendar.getInstance();
         dateA.set(dateKeyB.get(2), dateKeyB.get(0), dateKeyB.get(1), dateKeyB.get(3), dateKeyB.get(4));
 
-        return comp.compare((now.getTimeInMillis() - dateA.getTimeInMillis()), (now.getTimeInMillis() - dateB.getTimeInMillis()));
+        //revise the thing down here
+        return ((now.getTimeInMillis() - dateA.getTimeInMillis()).compareTo((now.getTimeInMillis() - dateB.getTimeInMillis())));
     }
 
     public void addEvent()
@@ -108,5 +106,9 @@ public abstract class Event
 
         return writeS;
     }
+
+    //put the compare in another file called DateComparator class, implementing the Comparator interface
+    //from this file, call an instance of the Heap class, then pass DateComparator as a parameters
+    
      */
 }
