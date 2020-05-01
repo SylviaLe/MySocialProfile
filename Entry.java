@@ -1,4 +1,3 @@
-package rogeriogentil.data.structures.chapter09;
 
 /**
  * Interface for a key-value pair
@@ -21,5 +20,5 @@ public interface Entry<K, V> {
     *
     * @return
     */
-   V getvalue();
+   V getValue();
 }

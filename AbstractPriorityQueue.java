@@ -1,4 +1,3 @@
-package rogeriogentil.data.structures.chapter09;
 
 import java.util.Comparator;
 
@@ -68,7 +67,7 @@ public abstract class AbstractPriorityQueue<K, V> implements PriorityQueue<K, V>
       }
 
       @Override
-      public V getvalue() {
+      public V getValue() {
          return this.value;
       }
 

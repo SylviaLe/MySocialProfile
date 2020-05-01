@@ -71,7 +71,6 @@ public class SinglyLinkedStack<E> {
   * Test the class by performing a series of operations
   */
   public static void main(String[] args) {
-    Integer i;
     SinglyLinkedStack<Integer> A = new SinglyLinkedStack<>();  //A stack of integers
     A.push(7);
     A.push(6);
@@ -82,10 +81,8 @@ public class SinglyLinkedStack<E> {
     //A.display();
 
     SinglyLinkedStack<Character> B = new SinglyLinkedStack<>();    //A stack of characters
-    char s;
     B.push('B');
     B.push('>');
-    s = B.pop();
     B.push('5');
     //B.display();
   }

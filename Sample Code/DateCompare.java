@@ -56,6 +56,8 @@ public class DateCompare
 	
 		System.out.println("\nThe time you entered is " + moreOrLess + " than the current time.");
 		
+
+		scan.close();
 	}//end userInput
 	
 }//end class

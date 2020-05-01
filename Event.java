@@ -1,5 +1,8 @@
+import java.util.Scanner;
+import java.util.Calendar;
+import java.util.ArrayList;
 
-public abstract class Event 
+public class Event 
 {
     /*
     priority queue: save calendar obj, compare date, then add to queue
@@ -10,8 +13,9 @@ public abstract class Event
     toString()  //use to write into the file, in mm dd yy hh mm format
     addEvent(date[], description) //use when load from file, can call out from addEvent too
 
-    public HeapPriorityQueue<ArrayList, String> events = new HeapPriorityQueue<>(DateComparator);
+    */
 
+    /*
     public int compare(ArrayList dateKeyA, ArrayList dateKeyB)
     {
         Calendar dateA = Calendar.getInstance();
@@ -23,13 +27,23 @@ public abstract class Event
         //revise the thing down here
         return ((now.getTimeInMillis() - dateA.getTimeInMillis()).compareTo((now.getTimeInMillis() - dateB.getTimeInMillis())));
     }
+    */
+    public HeapPriorityQueue<ArrayList<Integer>, String> events = new HeapPriorityQueue<>(new DateComparator());
+    ArrayList<Integer> eventDate; 
+    ArrayList<Integer> temp;
 
+    public Event()
+    {
+        eventDate = new ArrayList<>();
+        temp = new ArrayList<>();
+    }
     public void addEvent()
     {
         int month, day, year, hour, min;
         String desc;
-        ArrayList<Integer> eventDate;
-        ArrayList<Integer> temp;
+        
+
+        Scanner scan = new Scanner(System.in);
 
 		System.out.print("Please enter a month MM: ");
 		month = scan.nextInt();
@@ -53,10 +67,10 @@ public abstract class Event
         temp.add(hour);
         temp.add(min);
 
-        if (events.passEvent(temp))
+        if (passEvent(temp))
         {
             temp.clear();
-            System.out.println("The date you entered has passed, please enter again")
+            System.out.println("The date you entered has passed, please enter again");
             addEvent();
         }
         else
@@ -67,8 +81,9 @@ public abstract class Event
             eventDate.add(hour);
             eventDate.add(min);
 
-            events.addEvent(eventDate, desc)
+            addEvent(eventDate, desc);
         }
+        scan.close();
 
     }
 
@@ -76,7 +91,8 @@ public abstract class Event
     {
         Calendar date = Calendar.getInstance();
         date.set(dates.get(2), dates.get(0), dates.get(1), dates.get(3), dates.get(4));
-                           
+
+        Calendar now = Calendar.getInstance();                   
         if ((now.getTimeInMillis() - date.getTimeInMillis()) < 0)
 			return true;   //events passed
 		else
@@ -92,23 +108,21 @@ public abstract class Event
         events.insert(date, desc);
     }
     
-    public toString()
+    public String toString()
     {
-        String writeS;
-        for (int i = 0, i < events.size(), i++)
+        String writeS = "";
+        for (int i = 0; i < events.size(); i++)
         {
-            ArrayList<Integer> date = events.get(i).getKey()
-            String desc = events.get(i).getValue();
+            ArrayList<Integer> date = events.heap.get(i).getKey();
+            String desc = events.heap.get(i).getValue();
 
             String temp = '"' + date.get(0) + " " + date.get(1) + " " + date.get(2) + " " + date.get(3) + " " + date.get(4) + " " + desc + '"';
             writeS = writeS + temp;
         }
-
         return writeS;
     }
 
     //put the compare in another file called DateComparator class, implementing the Comparator interface
     //from this file, call an instance of the Heap class, then pass DateComparator as a parameters
     
-     */
 }
