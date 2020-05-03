@@ -106,10 +106,14 @@ public class SinglyLinkedList<E> {
 	{
 		String stack = "";
 		SNode<E> current = head;
-		while (current != null) 
-		{   // for each node,
-			stack = stack + '"' + current.getElement() + '"' + ',';  	// display it using the SNode.toString() method				
-			current = current.getNext();		//Fetch the next node in the list
+		int i = 0;
+		{
+			while (current != null && i < 3) 
+			{   // for each node,
+				stack = stack + '"' + current.getElement() + '"' + ',';  	// display it using the SNode.toString() method				
+				current = current.getNext();		//Fetch the next node in the list
+				i++;
+			}
 		}
 		return stack;
 	}

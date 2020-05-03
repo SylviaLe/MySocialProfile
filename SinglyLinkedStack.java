@@ -76,6 +76,10 @@ public class SinglyLinkedStack<E> {
     A.push(6);
     //i = A.pop();
     A.push(9);
+    A.push(10);
+    A.push(15);
+    A.push(18);
+    A.push(20);
     //i = A.pop();
     System.out.print(A.toString());
     //A.display();
