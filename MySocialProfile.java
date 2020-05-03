@@ -20,7 +20,7 @@ public class MySocialProfile
         Scanner user = new Scanner(System.in);
 
 	System.out.print("Please enter your name: ");
-        this.name = user.next();
+        this.name = user.nextLine();
 	    
         System.out.print("Please enter your email address: ");
         this.email = user.next();
@@ -35,6 +35,11 @@ public class MySocialProfile
         this.posts = new SinglyLinkedStack<>();
         this.friends = new ArrayList<>();
         //this.events = new Event();
+
+        saveToRecord();
+        System.out.print("---Your account has been successfully created---\n");
+        
+
         user.close();
     }
 
@@ -52,7 +57,12 @@ public class MySocialProfile
         posts.push(newPost);
         //in.close();
     }
-    //addEvent()
+
+    /*
+     * addEvent() class here
+    */
+
+
     public void manageFriend(String friend)  //use the parameter one. ask for info from main
     {
     	/*Scanner in = new Scanner(System.in);
@@ -67,24 +77,27 @@ public class MySocialProfile
         
         //in.close();
     }
-    
-    public void logout()   //when the user logout, write everything into the file
+ 
+    /*
+     * Write or update user's info into a text file (replacing logout() method)
+    */
+    public void saveToRecord()
     {
         try 
         {
-			FileWriter fileOut = new FileWriter("newFile.txt");
-			BufferedWriter bufWriter = new BufferedWriter(fileOut);
-			
-			bufWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + posts.toString() + "\n" + friends.toString());
-			//for the moment, havent write the event in yet
-			bufWriter.close();
+            FileWriter fileOut = new FileWriter("newFile.txt");
+            BufferedWriter bufWriter = new BufferedWriter(fileOut);
+            
+            bufWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + posts.toString() + "\n" + friends.toString());
+            //for the moment, havent write the event in yet
+            bufWriter.close();
             fileOut.close();
         }
         catch (IOException e) 
         {
-			e.printStackTrace();
-		}
-    }
+            e.printStackTrace();
+        }      
+    }   
 
     private void doStuff()
     {
@@ -157,7 +170,7 @@ public class MySocialProfile
                         message = message.substring(1, message.length());
                         this.posts.push(message);
                     }
-                    this.posts.display();
+                    //this.posts.display();
                     postScanner.close();
         
         
@@ -170,16 +183,16 @@ public class MySocialProfile
         
                     friendScanner.useDelimiter(",");  
                     String friend;
-                    System.out.print("Friends: ");
+                    System.out.print("\nFriends: ");
                     while (friendScanner.hasNext()) {
                         friend = friendScanner.next();
                         System.out.print(friend + ",");
                         this.friends.add(friend);
                     }
-                    System.out.println(this.friends.toString());
+                    //System.out.println(this.friends.toString());
                     friendScanner.close();
                     System.out.println();
-                    System.out.println("+++++++++++++++++++++++++++");
+                    System.out.println("------");
                 }
                 }
                 catch(FileNotFoundException ex) 
@@ -198,6 +211,5 @@ public class MySocialProfile
         profile.loadprofile();
         profile.post("Hello World");
         profile.manageFriend("kle2@conncol.edu");
-        profile.logout();
     }
 }
