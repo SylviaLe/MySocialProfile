@@ -22,13 +22,13 @@ public class App
             int choice = scan.nextInt();
             switch (choice){
                 case 1:     // post to timeline
-                    Scanner in = new Scanner(System.in);
-                    System.out.print("What is on your mind: ");
-                    String newPost = in.next();
-                    in.nextLine();   //to catch carriage
+                    //Scanner in = new Scanner(System.in);
+                    //System.out.print("What is on your mind: ");
+                    //String newPost = in.next();
+                    //in.nextLine();   //to catch carriage
                     
-                    p.post(newPost); //call input
-                    in.close();
+                    p.post(); //call input
+                    //in.close();
 
                     break;
                 case 2:     // add event
@@ -36,13 +36,13 @@ public class App
                 case 3:     // view friend list
                     break;
                 case 4:     // add/remove friend
-                    Scanner in2 = new Scanner(System.in);
-                    System.out.print("Please enter your friend's email address: ");
-                    String friend = in2.next();
-                    in2.nextLine();    //to catch carriage
+                    //Scanner in2 = new Scanner(System.in);
+                    //System.out.print("Please enter your friend's email address: ");
+                    //String friend = in2.next();
+                    //in2.nextLine();    //to catch carriage
                 
-                    p.manageFriend(friend);  //call input
-                    in2.close();
+                    p.manageFriend();  //call input
+                    //in2.close();
                     break;
                 case 5:     // log out
                     System.out.println("You have logged out");
