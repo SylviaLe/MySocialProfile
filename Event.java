@@ -55,9 +55,9 @@ public class Event
 		hour = scan.nextInt();
 		System.out.print("Please enter the minute of the hour (00-59): ");
         min = scan.nextInt();
-        System.out.print("Please enter a month MM: ");
+        System.out.print("Please enter a description for the event: ");
         desc = scan.next();
-        scan.nextLine();  //catch carriage
+        desc += scan.nextLine(); //catch carriage
 
         //code to check before adding
 
@@ -93,7 +93,7 @@ public class Event
         date.set(dates.get(2), dates.get(0), dates.get(1), dates.get(3), dates.get(4));
 
         Calendar now = Calendar.getInstance();                   
-        if ((now.getTimeInMillis() - date.getTimeInMillis()) < 0)
+        if ((now.getTimeInMillis() - date.getTimeInMillis()) > 0)
 			return true;   //events passed
 		else
             return false;
@@ -116,13 +116,27 @@ public class Event
             ArrayList<Integer> date = events.heap.get(i).getKey();
             String desc = events.heap.get(i).getValue();
 
-            String temp = '"' + date.get(0) + " " + date.get(1) + " " + date.get(2) + " " + date.get(3) + " " + date.get(4) + " " + desc + '"';
-            writeS = writeS + temp;
+            String chunk1 = "\"" + date.get(0) + " " + date.get(1) + " " + date.get(2) + " ";
+            String chunk2 = date.get(3) + " " + date.get(4) + " " + desc + '"' + ",";
+            String oneEvent = chunk1 + chunk2;
+            writeS = writeS + oneEvent;
         }
         return writeS;
     }
 
-    //put the compare in another file called DateComparator class, implementing the Comparator interface
-    //from this file, call an instance of the Heap class, then pass DateComparator as a parameters
+    public static void main(String[] args)
+    {
+        Event myPlan = new Event();
+        myPlan.addEvent();
+        ArrayList<Integer> dateKey = new ArrayList<>();
+        dateKey.add(11);
+        dateKey.add(19);
+        dateKey.add(2001);
+        dateKey.add(21);
+        dateKey.add(55);
+        myPlan.addEvent(dateKey, "My Birthday!");
+
+        System.out.print(myPlan.toString());
+    }
     
 }

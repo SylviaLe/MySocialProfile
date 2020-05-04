@@ -11,7 +11,7 @@ public class MySocialProfile
     public String email;
     public String pass;
     public int classYear;
-    //public Event events;
+    public Event userEvents = new Event();
     public SinglyLinkedStack<String> posts = new SinglyLinkedStack<>();
     public ArrayList<String> friends = new ArrayList<>();
     
@@ -52,7 +52,12 @@ public class MySocialProfile
         posts.push(newPost);
         //in.close();
     }
-    //addEvent()
+    public void addEvent()
+    {
+        userEvents.addEvent();
+    }
+
+
     public void manageFriend(String friend)  //use the parameter one. ask for info from main
     {
     	/*Scanner in = new Scanner(System.in);
@@ -61,7 +66,10 @@ public class MySocialProfile
         in.nextLine();    //to catch carriage */
         
         if (friends.contains(friend))
+        {	
+        	System.out.print("True");
             friends.remove(friend);
+        }
         else 
             friends.add(friend);
         
@@ -75,7 +83,7 @@ public class MySocialProfile
 			FileWriter fileOut = new FileWriter("newFile.txt");
 			BufferedWriter bufWriter = new BufferedWriter(fileOut);
 			
-			bufWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + posts.toString() + "\n" + friends.toString());
+			bufWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + userEvents.toString() + "\n" + posts.toString() + "\n" + friends.toString().replaceAll("\\s",""));
 			//for the moment, havent write the event in yet
 			bufWriter.close();
             fileOut.close();
@@ -92,7 +100,7 @@ public class MySocialProfile
             //because the FileInputStream may throw a FileNotFoundException
             try
             {
-                Scanner fileIn = new Scanner(new FileInputStream("userdata.txt"));
+                Scanner fileIn = new Scanner(new FileInputStream("newFile.txt"));
                 while (fileIn.hasNext()) { //while more of the input file is still available for reading
                     this.name = fileIn.nextLine();  //reads an entire line of input
                     System.out.println("Name: " + name);
@@ -122,23 +130,28 @@ public class MySocialProfile
                         i++;
         
                         Scanner eScanner = new Scanner(e); //yet another scanner just for this particular event
-                        String month = Integer.toString(eScanner.nextInt());
-                        String day = Integer.toString(eScanner.nextInt());
-                        String year = Integer.toString(eScanner.nextInt());
-                        String hour = Integer.toString(eScanner.nextInt());
-                        String min = Integer.toString(eScanner.nextInt());
+                        int month = eScanner.nextInt();
+                        int day = eScanner.nextInt();
+                        int year = eScanner.nextInt();
+                        int hour = eScanner.nextInt();
+                        int min = eScanner.nextInt();
         
-                        String date = month + '/' + day +'/' + year + ' ' + hour + ':' + min;
-			            String[] dateKey = {month, day, year, hour, min};
+                        String date = Integer.toString(month) + '/' + Integer.toString(day) +'/' + Integer.toString(year) + ' ' + Integer.toString(hour) + ':' + Integer.toString(min);
+                        ArrayList<Integer> dateKey = new ArrayList<>();
+                        dateKey.add(month);
+                        dateKey.add(day);
+                        dateKey.add(year);
+                        dateKey.add(hour);
+                        dateKey.add(min);
                         String desc = ""; //to hold the description of the event
                         while (eScanner.hasNext()){ //while there are words left...
                             desc = desc + " " + eScanner.next(); //reads the description one word at a time
                         }
-                        //if (!this.events.passEvent(dateKey))
-                        //{
-                        //this.events.addEvent(dateKey, desc)
-                        System.out.println(date + ": " + desc);
-                        //}
+                        if (!userEvents.passEvent(dateKey))
+                        {
+                            userEvents.addEvent(dateKey, desc);
+                            System.out.println(date + ": " + desc);
+                        }
                     }			
                     eventsScanner.close();
         
@@ -153,7 +166,6 @@ public class MySocialProfile
                     System.out.print("Posts: ");
                     while (postScanner.hasNext()) {
                         message = postScanner.next();
-                        System.out.print(message + "\",");
                         message = message.substring(1, message.length());
                         this.posts.push(message);
                     }
@@ -164,7 +176,7 @@ public class MySocialProfile
                     /* reads in next line and then breaks it into separate friends
                      * now the delimiter is just a comma because there are no quotes around
                      * each email address.  so this is a bit simpler than above procedure.*/
-                    String friends = fileIn.nextLine();
+                    String friends = fileIn.nextLine().replaceAll("\\[", "").replaceAll("\\]", "");
                     Scanner friendScanner = new Scanner(friends);
                     this.friends = new ArrayList<>();
         
@@ -176,7 +188,6 @@ public class MySocialProfile
                         System.out.print(friend + ",");
                         this.friends.add(friend);
                     }
-                    System.out.println(this.friends.toString());
                     friendScanner.close();
                     System.out.println();
                     System.out.println("+++++++++++++++++++++++++++");
@@ -196,8 +207,10 @@ public class MySocialProfile
         MySocialProfile profile = new MySocialProfile();
         //profile.createNewAcc();
         profile.loadprofile();
-        profile.post("Hello World");
-        profile.manageFriend("kle2@conncol.edu");
+        //profile.post("Hello World");
+        //System.out.println(profile.friends);
+        //profile.manageFriend("kle2@conncol.edu");
+        //profile.addEvent();
         profile.logout();
     }
 }
