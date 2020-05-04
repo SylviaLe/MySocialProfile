@@ -47,15 +47,15 @@ public class MySocialProfile
 	    doStuff();
     }
 
-    public void post(String newPost)  //use the parameter one. ask for info from main
+    public void post()  //use the parameter one. ask for info from main
     {
-    	/*Scanner in = new Scanner(System.in);
+    	Scanner in = new Scanner(System.in);
     	System.out.print("What is on your mind: ");
         String newPost = in.next();
-        in.nextLine();   //to catch carriage */
+        in.nextLine();   //to catch carriage 
     	
         posts.push(newPost);
-        //in.close();
+
     }
 
     /*
@@ -63,19 +63,18 @@ public class MySocialProfile
     */
 
 
-    public void manageFriend(String friend)  //use the parameter one. ask for info from main
+    public void manageFriend()  //use the parameter one. ask for info from main
     {
-    	/*Scanner in = new Scanner(System.in);
+    	Scanner in = new Scanner(System.in);
     	System.out.print("Please enter your friend's email address: ");
         String friend = in.next();
-        in.nextLine();    //to catch carriage */
+        in.nextLine();    //to catch carriage 
         
         if (friends.contains(friend))
             friends.remove(friend);
         else 
             friends.add(friend);
         
-        //in.close();
     }
  
     /*
