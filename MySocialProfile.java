@@ -20,7 +20,7 @@ public class MySocialProfile
         Scanner user = new Scanner(System.in);
 
 	System.out.print("Please enter your name: ");
-        this.name = user.next();
+        this.name = user.nextLine();
 	    
         System.out.print("Please enter your email address: ");
         this.email = user.next();
@@ -35,6 +35,11 @@ public class MySocialProfile
         this.posts = new SinglyLinkedStack<>();
         this.friends = new ArrayList<>();
         //this.events = new Event();
+
+        saveToRecord();
+        System.out.print("---Your account has been successfully created---\n");
+        
+
         user.close();
     }
 
@@ -42,15 +47,15 @@ public class MySocialProfile
 	    doStuff();
     }
 
-    public void post(String newPost)  //use the parameter one. ask for info from main
+    public void post()  //use the parameter one. ask for info from main
     {
-    	/*Scanner in = new Scanner(System.in);
+    	Scanner in = new Scanner(System.in);
     	System.out.print("What is on your mind: ");
         String newPost = in.next();
-        in.nextLine();   //to catch carriage */
+        in.nextLine();   //to catch carriage 
     	
         posts.push(newPost);
-        //in.close();
+
     }
     public void addEvent()
     {
@@ -58,12 +63,12 @@ public class MySocialProfile
     }
 
 
-    public void manageFriend(String friend)  //use the parameter one. ask for info from main
+    public void manageFriend()  //use the parameter one. ask for info from main
     {
-    	/*Scanner in = new Scanner(System.in);
+    	Scanner in = new Scanner(System.in);
     	System.out.print("Please enter your friend's email address: ");
         String friend = in.next();
-        in.nextLine();    //to catch carriage */
+        in.nextLine();    //to catch carriage 
         
         if (friends.contains(friend))
         {	
@@ -73,10 +78,12 @@ public class MySocialProfile
         else 
             friends.add(friend);
         
-        //in.close();
     }
-    
-    public void logout()   //when the user logout, write everything into the file
+ 
+    /*
+     * Write or update user's info into a text file (replacing logout() method)
+    */
+    public void saveToRecord()
     {
         try 
         {
@@ -90,9 +97,9 @@ public class MySocialProfile
         }
         catch (IOException e) 
         {
-			e.printStackTrace();
-		}
-    }
+            e.printStackTrace();
+        }      
+    }   
 
     private void doStuff()
     {
@@ -164,7 +171,8 @@ public class MySocialProfile
                     postScanner.useDelimiter("\",");
                     String message; 
                     System.out.print("Posts: ");
-                    while (postScanner.hasNext()) {
+                    while (postScanner.hasNext()) 
+                    {
                         message = postScanner.next();
                         message = message.substring(1, message.length());
                         this.posts.push(message);
@@ -183,14 +191,15 @@ public class MySocialProfile
                     friendScanner.useDelimiter(",");  
                     String friend;
                     System.out.print("Friends: ");
-                    while (friendScanner.hasNext()) {
+                    while (friendScanner.hasNext()) 
+                    {
                         friend = friendScanner.next();
                         System.out.print(friend + ",");
                         this.friends.add(friend);
                     }
                     friendScanner.close();
                     System.out.println();
-                    System.out.println("+++++++++++++++++++++++++++");
+                    System.out.println("+++++++++++++++++++++++++++++++++");
                 }
                 }
                 catch(FileNotFoundException ex) 
@@ -211,6 +220,6 @@ public class MySocialProfile
         //System.out.println(profile.friends);
         //profile.manageFriend("kle2@conncol.edu");
         //profile.addEvent();
-        profile.logout();
+        profile.saveToRecord();
     }
 }
