@@ -26,12 +26,8 @@ public class App
             //}
             char choice = scan.next().charAt(0);
             switch (choice){
-                case '1':     // post to timeline
-                    //Scanner in = new Scanner(System.in);
-                    //System.out.print("What is on your mind: ");
-                    //String newPost = in.next();
-                    //in.nextLine();   //to catch carriage
-                    
+                case '1':     
+                
                     p.post(); //call input
                     //in.close();
 
@@ -39,15 +35,10 @@ public class App
                 case '2':     // add event
                     break;
                 case '3':     // view friend list
+                    p.listFriend();
                     break;
-                case '4':     // add/remove friend
-                    //Scanner in2 = new Scanner(System.in);
-                    //System.out.print("Please enter your friend's email address: ");
-                    //String friend = in2.next();
-                    //in2.nextLine();    //to catch carriage
-                
+                case '4':     // add/remove friend              
                     p.manageFriend();  //call input
-                    //in2.close();
                     break;
                 case '5':     // log out
                     System.out.println("You have logged out");
