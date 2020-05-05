@@ -19,7 +19,7 @@ public class MySocialProfile
     {
         Scanner user = new Scanner(System.in);
 
-	System.out.print("Please enter your name: ");
+	    System.out.print("Please enter your name: ");
         this.name = user.nextLine();
 	    
         System.out.print("Please enter your email address: ");
@@ -31,16 +31,10 @@ public class MySocialProfile
         System.out.print("Please enter your class year: ");
         this.classYear = user.nextInt();
         user.nextLine();  //catch the carriage. DO NOT REMOVE
-       
-        this.posts = new SinglyLinkedStack<>();
-        this.friends = new ArrayList<>();
-        //this.events = new Event();
 
         saveToRecord();
         System.out.print("---Your account has been successfully created---\n");
         
-
-        user.close();
     }
 
     public void loadprofile(){

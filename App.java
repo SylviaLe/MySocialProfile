@@ -15,13 +15,18 @@ public class App
    
         boolean logout = false;         // flag check for log out
         
-        while (!logout){    // run until user chooses 5
+        while (!logout)
+        {    // run until user chooses 5
             System.out.println("|HOME SCREEN|\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
             System.out.println("(4) Add/remove a friend\n(5) Log out\nEnter a number to proceed:");
             
-            int choice = scan.nextInt();
+            //while (scan.hasNextInt()) 
+            //{
+              //  scan.next();
+            //}
+            char choice = scan.next().charAt(0);
             switch (choice){
-                case 1:     // post to timeline
+                case '1':     // post to timeline
                     //Scanner in = new Scanner(System.in);
                     //System.out.print("What is on your mind: ");
                     //String newPost = in.next();
@@ -31,11 +36,11 @@ public class App
                     //in.close();
 
                     break;
-                case 2:     // add event
+                case '2':     // add event
                     break;
-                case 3:     // view friend list
+                case '3':     // view friend list
                     break;
-                case 4:     // add/remove friend
+                case '4':     // add/remove friend
                     //Scanner in2 = new Scanner(System.in);
                     //System.out.print("Please enter your friend's email address: ");
                     //String friend = in2.next();
@@ -44,7 +49,7 @@ public class App
                     p.manageFriend();  //call input
                     //in2.close();
                     break;
-                case 5:     // log out
+                case '5':     // log out
                     System.out.println("You have logged out");
                     logout = true;
                     break;
@@ -53,6 +58,7 @@ public class App
             }
             
         }
+        
     }
     public static void main(String[] args) {
 
