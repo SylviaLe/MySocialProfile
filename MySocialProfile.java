@@ -40,7 +40,7 @@ public class MySocialProfile
         System.out.print("---Your account has been successfully created---\n");
         
 
-        user.close();
+        //user.close();
     }
 
     public void loadprofile(){
