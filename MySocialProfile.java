@@ -44,17 +44,29 @@ public class MySocialProfile
     public void post()  //use the parameter one. ask for info from main
     {
     	Scanner in = new Scanner(System.in);
-    	System.out.print("What is on your mind: ");
-        String newPost = in.next();
-        in.nextLine();   //to catch carriage 
+    	System.out.print("What is on your mind: \n");
+        String newPost = in.nextLine();
+        //in.nextLine();   //to catch carriage 
     	
         posts.push(newPost);
+        saveToRecord();
+        System.out.print("---Your post has been saved---\n");
 
     }
     public void addEvent()
     {
-        userEvents.addEvent();
+        userEvents.addEvent(); 
+        saveToRecord();
     }
+
+    public void listFriend(){
+
+        System.out.print("---Your friend list---\n");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+        friends.forEach((n) -> System.out.println(n));
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++");
+    }
+
 
 
     public void manageFriend()  //use the parameter one. ask for info from main
@@ -66,11 +78,16 @@ public class MySocialProfile
         
         if (friends.contains(friend))
         {	
-        	System.out.print("True");
+        	System.out.print("This person is already in your list");
             friends.remove(friend);
+            System.out.print("---You have removed " + friend + "---\n");
         }
         else 
+        {
             friends.add(friend);
+            System.out.print("---You have added " + friend + " as a friend---\n");
+        }
+        saveToRecord();
         
     }
  
@@ -82,11 +99,11 @@ public class MySocialProfile
         try 
         {
 			FileWriter fileOut = new FileWriter("newFile.txt");
-			BufferedWriter bufWriter = new BufferedWriter(fileOut);
+			BufferedWriter buffWriter = new BufferedWriter(fileOut);
 			
-			bufWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + userEvents.toString() + "\n" + posts.toString() + "\n" + friends.toString().replaceAll("\\s",""));
+			buffWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + userEvents.toString() + "\n" + posts.toString() + "\n" + friends.toString().replaceAll("\\s",""));
 			//for the moment, havent write the event in yet
-			bufWriter.close();
+			buffWriter.close();
             fileOut.close();
         }
         catch (IOException e) 
@@ -96,22 +113,25 @@ public class MySocialProfile
     }   
 
     private void doStuff()
-    {
+    {       
             //this try-catch statement is needed around this file input code
             //because the FileInputStream may throw a FileNotFoundException
             try
             {
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++");
                 Scanner fileIn = new Scanner(new FileInputStream("newFile.txt"));
                 while (fileIn.hasNext()) { //while more of the input file is still available for reading
                     this.name = fileIn.nextLine();  //reads an entire line of input
                     System.out.println("Name: " + name);
         
                     this.email = fileIn.nextLine();
+                    System.out.println("Email Address: " + email);
         
                     this.pass = fileIn.nextLine();
+                    System.out.println("Password: " + pass);
         
                     this.classYear = Integer.parseInt(fileIn.nextLine());
-                    System.out.println("Year: " + classYear);
+                    System.out.println("Class Year: " + classYear);
         
                     String events = fileIn.nextLine(); //read the entire line of event data. keep it as a string for now
         
@@ -193,7 +213,7 @@ public class MySocialProfile
                     }
                     friendScanner.close();
                     System.out.println();
-                    System.out.println("+++++++++++++++++++++++++++++++++");
+                    System.out.println("+++++++++++++++++++++++++++++++++++++++++");
                 }
                 }
                 catch(FileNotFoundException ex) 
