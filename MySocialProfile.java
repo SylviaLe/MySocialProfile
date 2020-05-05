@@ -11,9 +11,9 @@ public class MySocialProfile
     public String email;
     public String pass;
     public int classYear;
-    public Event userEvents = new Event();
-    public SinglyLinkedStack<String> posts = new SinglyLinkedStack<>();
-    public ArrayList<String> friends = new ArrayList<>();
+    public Event userEvents;
+    public SinglyLinkedStack<String> posts;
+    public ArrayList<String> friends;
     
     public void createNewAcc()
     {
@@ -31,6 +31,11 @@ public class MySocialProfile
         System.out.print("Please enter your class year: ");
         this.classYear = user.nextInt();
         user.nextLine();  //catch the carriage. DO NOT REMOVE
+
+        this.userEvents = new Event();
+        this.posts = new SinglyLinkedStack<>();
+        this.friends = new ArrayList<>();
+
 
         saveToRecord();
         System.out.print("---Your account has been successfully created---\n");
@@ -63,7 +68,39 @@ public class MySocialProfile
 
         System.out.print("---Your friend list---\n");
         System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-        friends.forEach((n) -> System.out.println(n));
+        try 
+        {
+            Scanner fileIn = new Scanner(new FileInputStream("mysocialprofile.txt"));
+            for(int i=0; i < 6; i++)
+            {        
+                fileIn.nextLine();
+            }    
+            if (fileIn.hasNext())
+            {
+                fileIn.useDelimiter("\n");
+                String friends = fileIn.next().replaceAll("\\[", "").replaceAll("\\]", "");
+                Scanner friendScanner = new Scanner(friends);
+                this.friends = new ArrayList<>();
+
+                friendScanner.useDelimiter(",");  
+                String friend;
+                while (friendScanner.hasNext()) 
+                {
+                    friend = friendScanner.next();
+                    System.out.print(friend + "\n");
+                    this.friends.add(friend);
+                }
+                friendScanner.close();
+                fileIn.close();
+            }
+            else System.out.println("");
+        }
+        catch(FileNotFoundException ex) 
+        {
+            System.out.println("File not Found");
+            System.exit(0);        
+        }
+
         System.out.println("+++++++++++++++++++++++++++++++++++++++++");
     }
 
@@ -98,7 +135,7 @@ public class MySocialProfile
     {
         try 
         {
-			FileWriter fileOut = new FileWriter("newFile.txt");
+			FileWriter fileOut = new FileWriter("mysocialprofile.txt");
 			BufferedWriter buffWriter = new BufferedWriter(fileOut);
 			
 			buffWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + userEvents.toString() + "\n" + posts.toString() + "\n" + friends.toString().replaceAll("\\s",""));
@@ -119,7 +156,7 @@ public class MySocialProfile
             try
             {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-                Scanner fileIn = new Scanner(new FileInputStream("newFile.txt"));
+                Scanner fileIn = new Scanner(new FileInputStream("mysocialprofile.txt"));
                 while (fileIn.hasNext()) { //while more of the input file is still available for reading
                     this.name = fileIn.nextLine();  //reads an entire line of input
                     System.out.println("Name: " + name);
