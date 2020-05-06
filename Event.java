@@ -67,23 +67,19 @@ public class Event
         temp.add(hour);
         temp.add(min);
 
-        if (passEvent(temp))
+        while (passEvent(temp))
         {
             temp.clear();
             System.out.println("The date you entered has passed, please enter again");
             addEvent();
         }
-        else
-        {
-            eventDate.add(month);
-            eventDate.add(day);
-            eventDate.add(year);
-            eventDate.add(hour);
-            eventDate.add(min);
+        eventDate.add(month);
+        eventDate.add(day);
+        eventDate.add(year);
+        eventDate.add(hour);
+        eventDate.add(min);
 
-            addEvent(eventDate, desc);
-        }
-        scan.close();
+        addEvent(eventDate, desc);
 
     }
 
