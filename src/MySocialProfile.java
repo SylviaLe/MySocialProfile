@@ -15,6 +15,8 @@ import MySocialProfile.dependencies.*;
  */
 public class MySocialProfile
 {
+    // INSTANCE VARIABLES
+
     /**
      * Variables to hold name, email, password and class year
      */
@@ -29,7 +31,9 @@ public class MySocialProfile
     public Event userEvents = new Event();
     public SinglyLinkedStack<String> posts = new SinglyLinkedStack<>();
     public ArrayList<String> friends = new ArrayList<>();
-    
+
+
+    // METHODS
 
     /**
      * Prompt user for info and create a record of new account
@@ -127,7 +131,7 @@ public class MySocialProfile
         
     }
  
-    /*
+    /**
      * Write or update user's info into a text file 
     */
     public void saveToRecord()
@@ -262,21 +266,18 @@ public class MySocialProfile
                     System.exit(0);        
                 }
         }
-    
-    
-    /**
-     * Test the class
-     * @param args
-     */
+
+
+    // Testing methods
     public static void main(String[] args)
     {
         MySocialProfile profile = new MySocialProfile();
         profile.createNewAcc();
-        //profile.loadprofile();
+        profile.loadprofile();
         profile.post();
-        //System.out.println(profile.friends);
-        //profile.manageFriend("kle2@conncol.edu");
-        //profile.addEvent();
-        //profile.saveToRecord();
+        System.out.println(profile.friends);
+        profile.manageFriend();
+        profile.addEvent();
+        profile.saveToRecord();
     }
 }

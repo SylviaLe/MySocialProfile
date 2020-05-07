@@ -4,7 +4,6 @@
 //Due date: 5/13/20
 
 import java.util.Scanner;
-import MySocialProfile.dependencies.*;
 
 /**
  * Class: App
@@ -12,20 +11,20 @@ import MySocialProfile.dependencies.*;
  */
 public class App 
 {
-    static final Scanner scan = new Scanner(System.in);  //only use one scanner for the entire class to avoid NoSuchElementException
+    //only use one scanner for the entire class to avoid NoSuchElementException
+    static final Scanner scan = new Scanner(System.in);
 
     /**
      * Functions after a new account has been created or existing account has been loaded
-     * @param p
+     * @param p profile of current user from MySocialProfile class
      */
-    public static void homeScreen(MySocialProfile p)
-    {
+    public static void homeScreen(MySocialProfile p) throws InterruptedException {
    
         boolean logout = false;         // flag check for log out
         
         while (!logout)
         {    // run until user chooses 5
-            System.out.println("|HOME SCREEN|\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
+            System.out.println("\n|HOME SCREEN|\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
             System.out.println("(4) Add/remove a friend\n(5) Log out\nEnter a number to proceed:");
             
             char choice = scan.next().charAt(0);
@@ -34,9 +33,11 @@ public class App
                     p.post(); //call input
                     break;
                 case '2':     // add event
+                    p.addEvent();
                     break;
                 case '3':     // view friend list
                     p.listFriend();
+                    java.lang.Thread.sleep(2000);
                     break;
                 case '4':     // add/remove friend              
                     p.manageFriend();  //call input
@@ -44,9 +45,11 @@ public class App
                 case '5':     // log out
                     System.out.println("You have logged out");
                     logout = true;
+                    java.lang.Thread.sleep(2000);
                     break;
                 default:
                     System.out.println("Please try again");
+                    java.lang.Thread.sleep(2000);
             }
             
         }
@@ -56,25 +59,30 @@ public class App
     /**
      * Greeting. The first screen that the user see
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         MySocialProfile currentUser = new MySocialProfile();
         boolean exit = false;       // flag check for exit
 
+        System.out.println("Welcome to MySocialProfile!");
         while (!exit){      // run until user chooses e
-            System.out.println("|MAIN MENU|\n(1) Create a new profile\n(2) Load an existing profile");
+            System.out.println("\n|MAIN MENU|\n(1) Create a new profile\n(2) Load an existing profile");
             System.out.println("(3) Exit program\nEnter a number to proceed:");
 
             char choice = scan.next().charAt(0);
             switch (choice){
                 case '1':       // create a new profile
                     System.out.println("---You chose to create a new profile---");
+                    java.lang.Thread.sleep(2000);
                     currentUser.createNewAcc();
+                    java.lang.Thread.sleep(2000);
                     homeScreen(currentUser);
                     break;
                 case '2':       // load an existing profile
                     System.out.println("---You chose to load an existing profile---");
+                    java.lang.Thread.sleep(2000);
                     currentUser.loadprofile();
+                    java.lang.Thread.sleep(2000);
                     homeScreen(currentUser);
                     break;
                 case '3':       // exit program
@@ -83,9 +91,8 @@ public class App
                     break;
                 default:
                     System.out.println("---Please try again---");
+                    java.lang.Thread.sleep(2000);
             }
         }
-
     }
-
 }

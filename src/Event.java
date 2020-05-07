@@ -127,9 +127,7 @@ public class Event
         return writeS;
     }
 
-    /**
-     * Test the class
-     */
+    // Testing methods
     public static void main(String[] args)
     {
         Event myPlan = new Event();
