@@ -6,9 +6,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import MySocialProfile.dependencies.*;
 
 
 /**

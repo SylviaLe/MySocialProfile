@@ -4,6 +4,7 @@
 //Due date: 5/13/20
 
 import java.util.Scanner;
+import MySocialProfile.dependencies.*;
 
 /**
  * Class: App
