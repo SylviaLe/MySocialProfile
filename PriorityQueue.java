@@ -2,8 +2,6 @@
 
 /**
  * Interface for the priority queue ADT.
- *
- * @author Rogerio J. Gentil
  * @param <K>
  * @param <V>
  */

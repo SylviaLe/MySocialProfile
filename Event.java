@@ -1,50 +1,39 @@
+//Linh Nguyen, Sophie Le, Sylvia Le
+//File: DateComparator.java
+//COM212-Prof.Tarimo
+//Due date: 5/13/20
+
 import java.util.Scanner;
 import java.util.Calendar;
 import java.util.ArrayList;
 
+/**
+ * Class: Event
+ * Manage user's events
+ */
 public class Event 
 {
-    /*
-    priority queue: save calendar obj, compare date, then add to queue
-    dateCompare()  //may need to be in another class to implement the compare() method as an obj of the Comparator interface. See page 365 line 28-29
-    //have an instance of Comparable basically compare the date base on the result of currentTime - evntTime, no abs
-    addEvent()  //ask the date, ask the name, create a calendar obj then add to queue
-    cpassEvent() //check if the event has passes, if yes then do not add. 
-    toString()  //use to write into the file, in mm dd yy hh mm format
-    addEvent(date[], description) //use when load from file, can call out from addEvent too
-
-    */
-
-    /*
-    public int compare(ArrayList dateKeyA, ArrayList dateKeyB)
-    {
-        Calendar dateA = Calendar.getInstance();
-        dateA.set(dateKeyA.get(2), dateKeyA.get(0), dateKeyA.get(1), dateKeyA.get(3), dateKeyA.get(4));
-
-        Calendar dateB = Calendar.getInstance();
-        dateA.set(dateKeyB.get(2), dateKeyB.get(0), dateKeyB.get(1), dateKeyB.get(3), dateKeyB.get(4));
-
-        //revise the thing down here
-        return ((now.getTimeInMillis() - dateA.getTimeInMillis()).compareTo((now.getTimeInMillis() - dateB.getTimeInMillis())));
-    }
-    */
-    public HeapPriorityQueue<ArrayList<Integer>, String> events = new HeapPriorityQueue<>(new DateComparator());
-    ArrayList<Integer> eventDate; 
-    ArrayList<Integer> temp;
-
-    public Event()
-    {
-        eventDate = new ArrayList<>();
-        temp = new ArrayList<>();
-    }
+    /**
+     * A heap-based priority queue to hold the event
+     * Use DateComparator class' instance as the key comparator
+     */
+    public HeapPriorityQueue<ArrayList<Integer>, String> events = new HeapPriorityQueue<>(new DateComparator()); 
+    
+    
+    /**
+     * Prompt user for info, check and add the event
+     */
     public void addEvent()
     {
+        //Two arraylist, one to hold the date (to add into the queue), the other to check the date
+        ArrayList<Integer> eventDate = new ArrayList<>(); 
+        ArrayList<Integer> temp = new ArrayList<>();
         int month, day, year, hour, min;
         String desc;
         
-
         Scanner scan = new Scanner(System.in);
 
+        //ask user for info of the events
 		System.out.print("Please enter a month MM: ");
 		month = scan.nextInt();
 		System.out.print("Please enter a day DD: ");
@@ -59,7 +48,7 @@ public class Event
         desc = scan.next();
         desc += scan.nextLine(); //catch carriage
 
-        //code to check before adding
+        //check the date before adding the event
 
         temp.add(month);
         temp.add(day);
@@ -69,26 +58,31 @@ public class Event
 
         if (passEvent(temp))
         {
-            temp.clear();
+            temp.clear(); //clear the temp to check again later
             System.out.println("The date you entered has passed, please enter again");
-            addEvent();
+            addEvent(); //prompt user to enter event again
         }
         else
         {
+            //add info to the list that keep the date info
             eventDate.add(month);
             eventDate.add(day);
             eventDate.add(year);
             eventDate.add(hour);
             eventDate.add(min);
 
-            addEvent(eventDate, desc);
+            addEvent(eventDate, desc); //add the other same name mthod
         }
-        scan.close();
 
     }
 
+    /**
+     * Check if the event has passed
+     * @return true if the event has passed; false if hasn't
+     */
     public  boolean passEvent(ArrayList<Integer> dates)  //return true if event has passed
     {
+        //create a calendar instance to keep the dat
         Calendar date = Calendar.getInstance();
         date.set(dates.get(2), dates.get(0), dates.get(1), dates.get(3), dates.get(4));
 
@@ -97,33 +91,44 @@ public class Event
 			return true;   //events passed
 		else
             return false;
-            
-        //explain: sẽ không có remove nữa mà chỉ có cái check pass này thôi, vì lúc chạy mà load event vào ó thì 
-        //có check trc xem là nó có pass hay chưa r, nếu chưa thì mới add vào cái working queue. 
-        //lúc logout thì sẽ lấy dữ liệu từ cái working queue đó overwrite cái file kia, nên cũng coi là remove rồi
     }
 
+    /**
+     * Add event to the queue. Used when load profile from file, and as a helper method for the other with the same name.
+     * @param date 
+     * @param desc
+     */
     public void addEvent(ArrayList<Integer> date, String desc)
     {
         events.insert(date, desc);
     }
     
+    /**
+     * Generate a string represents the list of event
+     * @return a string generate the list of events
+     */
     public String toString()
     {
         String writeS = "";
         for (int i = 0; i < events.size(); i++)
         {
-            ArrayList<Integer> date = events.heap.get(i).getKey();
-            String desc = events.heap.get(i).getValue();
+            ArrayList<Integer> date = events.heap.get(i).getKey();  //get the date (which function as a key)
+            String desc = events.heap.get(i).getValue();  //get the description
 
+            //generate a string for the event
             String chunk1 = "\"" + date.get(0) + " " + date.get(1) + " " + date.get(2) + " ";
             String chunk2 = date.get(3) + " " + date.get(4) + " " + desc + '"' + ",";
             String oneEvent = chunk1 + chunk2;
+
+            //concatenate to the previous
             writeS = writeS + oneEvent;
         }
         return writeS;
     }
 
+    /**
+     * Test the class
+     */
     public static void main(String[] args)
     {
         Event myPlan = new Event();

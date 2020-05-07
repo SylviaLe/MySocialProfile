@@ -102,6 +102,10 @@ public class SinglyLinkedList<E> {
 		System.out.println("");
 	}
 
+	/**
+	 * Generate a string representation of the linked list
+	 * Will be used in the stack
+	 */
 	public String toString()
 	{
 		String stack = "";

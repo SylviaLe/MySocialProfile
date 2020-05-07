@@ -1,17 +1,24 @@
+//Linh Nguyen, Sophie Le, Sylvia Le
+//File: DateComparator.java
+//COM212-Prof.Tarimo
+//Due date: 5/13/20
+
 import java.util.Scanner;
 
+/**
+ * Class: App
+ * Where everything happen
+ */
 public class App 
 {
-    /*
-    main()
-    currentUser() //cuz the second case has more to do 
-    exit()
-     */
-    // have all scanner use in one place for the class
-    // only use close() when done with all scanner
-    static final Scanner scan = new Scanner(System.in);
+    static final Scanner scan = new Scanner(System.in);  //only use one scanner for the entire class to avoid NoSuchElementException
 
-    public static void homeScreen(MySocialProfile p){
+    /**
+     * Functions after a new account has been created or existing account has been loaded
+     * @param p
+     */
+    public static void homeScreen(MySocialProfile p)
+    {
    
         boolean logout = false;         // flag check for log out
         
@@ -20,17 +27,10 @@ public class App
             System.out.println("|HOME SCREEN|\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
             System.out.println("(4) Add/remove a friend\n(5) Log out\nEnter a number to proceed:");
             
-            //while (scan.hasNextInt()) 
-            //{
-              //  scan.next();
-            //}
             char choice = scan.next().charAt(0);
             switch (choice){
                 case '1':     
-                
                     p.post(); //call input
-                    //in.close();
-
                     break;
                 case '2':     // add event
                     break;
@@ -51,6 +51,10 @@ public class App
         }
         
     }
+
+    /**
+     * Greeting. The first screen that the user see
+     */
     public static void main(String[] args) {
 
         MySocialProfile currentUser = new MySocialProfile();
@@ -82,9 +86,5 @@ public class App
         }
 
     }
-    //some note on event loader:
-    /* a = min();
-    while (currentTime - min.getKey().getTime <= 0) {removeMin(), a = min()}*/
-
 
 }

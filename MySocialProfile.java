@@ -1,3 +1,8 @@
+//Linh Nguyen, Sophie Le, Sylvia Le
+//File: DateComparator.java
+//COM212-Prof.Tarimo
+//Due date: 5/13/20
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
@@ -5,20 +10,37 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
+/**
+ * Class: MySocialProfile
+ * Manage user's info
+ */
 public class MySocialProfile
 {
+    /**
+     * Variables to hold name, email, password and class year
+     */
     public String name;
-    public String email;
-    public String pass;
+    private String email; //revise access modifier
+    private String pass;  //revise access modifier
     public int classYear;
+
+    /**
+     * Instance of Event class to hold events; singly linked stack to hold posts and and arraylist to hold list of friends
+     */
     public Event userEvents = new Event();
     public SinglyLinkedStack<String> posts = new SinglyLinkedStack<>();
     public ArrayList<String> friends = new ArrayList<>();
     
+
+    /**
+     * Prompt user for info and create a record of new account
+     */
     public void createNewAcc()
     {
         Scanner user = new Scanner(System.in);
 
+        //Ask info of the new account
 	    System.out.print("Please enter your name: ");
         this.name = user.nextLine();
 	    
@@ -32,16 +54,22 @@ public class MySocialProfile
         this.classYear = user.nextInt();
         user.nextLine();  //catch the carriage. DO NOT REMOVE
 
-        saveToRecord();
-        System.out.print("---Your account has been successfully created---\n");
+        saveToRecord();  //save
+        System.out.print("---Your account has been successfully created---\n"); //notify the user
         
     }
 
+    /**
+     * Load the existed profile of previous user
+     */
     public void loadprofile(){
-	    doStuff();
+	    doStuff();  //call the private method
     }
 
-    public void post()  //use the parameter one. ask for info from main
+    /**
+     * Prompt the user to write a post, and save
+     */
+    public void post()  
     {
     	Scanner in = new Scanner(System.in);
     	System.out.print("What is on your mind: \n");
@@ -53,12 +81,19 @@ public class MySocialProfile
         System.out.print("---Your post has been saved---\n");
 
     }
+
+    /**
+     * Prompt user to provide info of the event and save
+     */
     public void addEvent()
     {
         userEvents.addEvent(); 
         saveToRecord();
     }
 
+    /**
+     * Display list of friends
+     */
     public void listFriend(){
 
         System.out.print("---Your friend list---\n");
@@ -68,7 +103,10 @@ public class MySocialProfile
     }
 
 
-
+    /**
+     * Add or remove a friend. 
+     * If the entered email is in the list, remove; or else add to the list
+     */
     public void manageFriend()  //use the parameter one. ask for info from main
     {
     	Scanner in = new Scanner(System.in);
@@ -76,13 +114,13 @@ public class MySocialProfile
         String friend = in.next();
         in.nextLine();    //to catch carriage 
         
-        if (friends.contains(friend))
+        if (friends.contains(friend))  //if the friend exist in the list, remove
         {	
         	System.out.print("This person is already in your list");
             friends.remove(friend);
             System.out.print("---You have removed " + friend + "---\n");
         }
-        else 
+        else   //otherwise, add them to the list
         {
             friends.add(friend);
             System.out.print("---You have added " + friend + " as a friend---\n");
@@ -92,7 +130,7 @@ public class MySocialProfile
     }
  
     /*
-     * Write or update user's info into a text file (replacing logout() method)
+     * Write or update user's info into a text file 
     */
     public void saveToRecord()
     {
@@ -100,9 +138,9 @@ public class MySocialProfile
         {
 			FileWriter fileOut = new FileWriter("newFile.txt");
 			BufferedWriter buffWriter = new BufferedWriter(fileOut);
-			
+            
+            //write to the file
 			buffWriter.write(name + "\n" + email + "\n" + pass + "\n" + Integer.toString(classYear) + "\n" + userEvents.toString() + "\n" + posts.toString() + "\n" + friends.toString().replaceAll("\\s",""));
-			//for the moment, havent write the event in yet
 			buffWriter.close();
             fileOut.close();
         }
@@ -110,8 +148,12 @@ public class MySocialProfile
         {
             e.printStackTrace();
         }      
-    }   
+    }  
 
+
+    /**
+     * Helper method to read info from files, add to the existing instance variable and display
+     */
     private void doStuff()
     {       
             //this try-catch statement is needed around this file input code
@@ -191,7 +233,7 @@ public class MySocialProfile
                         message = message.substring(1, message.length());
                         this.posts.push(message);
                     }
-                    this.posts.display();
+                    this.posts.display();  //call the display() method from SLS class
                     postScanner.close();
         
         
@@ -224,16 +266,19 @@ public class MySocialProfile
         }
     
     
-
+    /**
+     * Test the class
+     * @param args
+     */
     public static void main(String[] args)
     {
         MySocialProfile profile = new MySocialProfile();
-        //profile.createNewAcc();
-        profile.loadprofile();
-        //profile.post("Hello World");
+        profile.createNewAcc();
+        //profile.loadprofile();
+        profile.post();
         //System.out.println(profile.friends);
         //profile.manageFriend("kle2@conncol.edu");
         //profile.addEvent();
-        profile.saveToRecord();
+        //profile.saveToRecord();
     }
 }

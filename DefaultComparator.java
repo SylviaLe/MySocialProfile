@@ -1,9 +1,5 @@
 import java.util.Comparator;
 
-/**
- *
- * @author Rogerio J. Gentil
- */
 public class DefaultComparator<E> implements Comparator<E> {
 
    @Override

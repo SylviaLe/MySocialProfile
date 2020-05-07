@@ -2,8 +2,6 @@
 import java.util.Comparator;
 
 /**
- *
- * @author Rogerio J. Gentil
  * @param <K>
  * @param <V>
  */
