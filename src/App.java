@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import MySocialProfile.dependencies.*;
 
 public class App 
 {
