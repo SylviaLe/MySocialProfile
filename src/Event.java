@@ -109,7 +109,9 @@ public class Event
         events.insert(date, desc);
     }
     
-    
+    /**
+    * Print out one upcoming event. The most imminent
+    */
     public void getLatestEvent()
     {
         ArrayList<Integer> date = events.min().getKey();
