@@ -30,6 +30,6 @@
   + Quite confusing post display (don't know which is the oldest and newest, so the display and save can be quite messy)
   
 - Notes
-The posts are listed in an order such that the most recent post is on the right
+User's posts: When displayed on console, user's posts are listed in an order such that the most recent post is on the left. Whereas, when they are written to mysocialprofile.txt file, the most recent post is on the right.
 
   
