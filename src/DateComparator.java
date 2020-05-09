@@ -38,14 +38,14 @@ public class DateComparator implements Comparator<ArrayList<Integer>>
         int dayB = (Integer) dateKeyB.get(1);
         int hourB = (Integer) dateKeyB.get(3);
         int minB = (Integer) dateKeyB.get(4);
-        dateA.set(yearB, monthB, dayB, hourB, minB);
+        dateB.set(yearB, monthB, dayB, hourB, minB);
 
         //create instance of Calendar class for the current time
         Calendar now = Calendar.getInstance();
 
         //use compare() to compare the date
         //Take the current time as a mark. dateA precedes dateB if the time from now to dateA is shorter than the time from now to dateB
-        int i = Long.compare((dateA.getTimeInMillis() - now.getTimeInMillis()), (dateB.getTimeInMillis() - now.getTimeInMillis()));
-        return i;
+        //int i = Long.compare((dateA.getTimeInMillis() - now.getTimeInMillis()), (dateB.getTimeInMillis() - now.getTimeInMillis()));
+        return dateA.compareTo(dateB);
     }
 }
