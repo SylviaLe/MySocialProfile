@@ -35,15 +35,15 @@ public class Event
         Scanner scan = new Scanner(System.in);
 
         //ask user for info of the events
-		System.out.print("Please enter a month MM: ");
-		month = scan.nextInt();
-		System.out.print("Please enter a day DD: ");
-		day = scan.nextInt();
-		System.out.print("Please enter a year YYYY: ");
-		year = scan.nextInt();
-		System.out.print("Please enter an hour of the day (0-23): ");
-		hour = scan.nextInt();
-		System.out.print("Please enter the minute of the hour (00-59): ");
+	System.out.print("Please enter a month MM: ");
+	month = scan.nextInt();
+	System.out.print("Please enter a day DD: ");
+	day = scan.nextInt();
+	System.out.print("Please enter a year YYYY: ");
+	year = scan.nextInt();
+	System.out.print("Please enter an hour of the day (0-23): ");
+	hour = scan.nextInt();
+	System.out.print("Please enter the minute of the hour (00-59): ");
         min = scan.nextInt();
         System.out.print("Please enter a description for the event: ");
         desc = scan.next();
@@ -57,23 +57,21 @@ public class Event
         temp.add(hour);
         temp.add(min);
 
-        if (passEvent(temp))
+        while (passEvent(temp))
         {
             temp.clear(); //clear the temp to check again later
             System.out.println("The date you entered has passed, please enter again");
             addEvent(); //prompt user to enter event again
         }
-        else
-        {
+      
             //add info to the list that keep the date info
-            eventDate.add(month);
-            eventDate.add(day);
-            eventDate.add(year);
-            eventDate.add(hour);
-            eventDate.add(min);
+        eventDate.add(month);
+        eventDate.add(day);
+        eventDate.add(year);
+       	eventDate.add(hour);
+        eventDate.add(min);
 
-            addEvent(eventDate, desc); //add the other same name mthod
-        }
+        addEvent(eventDate, desc); //add the other same name mthod
 
     }
 
