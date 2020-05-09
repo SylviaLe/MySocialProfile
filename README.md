@@ -29,3 +29,7 @@
 - Current bugs and potential fix
   + Quite confusing post display (don't know which is the oldest and newest, so the display and save can be quite messy)
   
+- Notes
+The posts are listed in an order such that the most recent post is on the right
+
+  
