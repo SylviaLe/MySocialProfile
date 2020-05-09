@@ -109,6 +109,15 @@ public class Event
         events.insert(date, desc);
     }
     
+    
+    public void getLatestEvent()
+    {
+        ArrayList<Integer> date = events.min().getKey();
+        String desc = events.min().getValue();
+        String dateString = Integer.toString(date.get(0)) + '/' + Integer.toString(date.get(1)) +'/' + Integer.toString(date.get(2)) + ' ' + Integer.toString(date.get(3)) + ':'  + Integer.toString(date.get(4));
+        System.out.println("Upcoming event: " + dateString + " : " + desc);
+    }
+    
     /**
      * Generate a string represents the list of event
      * @return a string generate the list of events
@@ -131,6 +140,7 @@ public class Event
         }
         return writeS;
     }
+    
 
     // Testing methods
     public static void main(String[] args)
