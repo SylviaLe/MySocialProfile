@@ -298,7 +298,7 @@ public class MySocialProfile
                         System.out.print(friend + ",");
                         this.friends.add(friend);
                     }
-		    events.getLatestEvent();
+		    userEvents.getLatestEvent();
                     friendScanner.close();
                     System.out.println();
                     System.out.println("+++++++++++++++++++++++++++++++++++++++++");
