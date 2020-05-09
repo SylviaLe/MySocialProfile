@@ -96,9 +96,11 @@ public class SinglyLinkedList<E> {
 	 */
 	public void display() {
 		SNode<E> current = head;
-		while (current != null) {      			// for each node,
+		int i = 0;
+		while (current != null && i < 3) {      			// for each node,
 			System.out.print(current + ", ");  	// display it using the SNode.toString() method
 			current = current.getNext();		//Fetch the next node in the list
+			i++;
 		}
 		System.out.println("");
 	}
