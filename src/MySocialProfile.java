@@ -1,4 +1,4 @@
-//Linh Nguyen, Sophie Le, Sylvia Le
+//Linh Nguyen, Sylvia Le, Sophie Le
 //File: DateComparator.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
@@ -6,7 +6,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.*;
-import MySocialProfile.dependencies.*;
 
 
 /**
@@ -28,9 +27,9 @@ public class MySocialProfile
     /**
      * Instance of Event class to hold events; singly linked stack to hold posts and and arraylist to hold list of friends
      */
-    public Event userEvents = new Event();
-    public SinglyLinkedStack<String> posts = new SinglyLinkedStack<>();
-    public ArrayList<String> friends = new ArrayList<>();
+    public Event userEvents =  new Event();
+    public SinglyLinkedStack<String> posts;
+    public ArrayList<String> friends;
 
 
     // METHODS
@@ -40,12 +39,12 @@ public class MySocialProfile
      */
     public void createNewAcc()
     {
-        Scanner user = new Scanner(System.in);
+         Scanner user = new Scanner(System.in);
 
         //Ask info of the new account
-	    System.out.print("Please enter your name: ");
+        System.out.print("Please enter your name: ");
         this.name = user.nextLine();
-	    
+        
         System.out.print("Please enter your email address: ");
         this.email = user.next();
 
@@ -56,8 +55,14 @@ public class MySocialProfile
         this.classYear = user.nextInt();
         user.nextLine();  //catch the carriage. DO NOT REMOVE
 
-        saveToRecord();  //save
-        System.out.print("---Your account has been successfully created---\n"); //notify the user
+        this.userEvents = new Event();
+        this.posts = new SinglyLinkedStack<>();
+        this.friends = new ArrayList<>();
+
+
+        saveToRecord(); //save
+        System.out.print("---Your account has been successfully created---\n");//notify the user
+ 
         
     }
 
@@ -78,7 +83,7 @@ public class MySocialProfile
         String newPost = in.nextLine();
         //in.nextLine();   //to catch carriage 
     	
-        posts.push(newPost);
+        this.posts.push(newPost);
         saveToRecord();
         System.out.print("---Your post has been saved---\n");
 
@@ -89,18 +94,54 @@ public class MySocialProfile
      */
     public void addEvent()
     {
-        userEvents.addEvent(); 
+        this.userEvents.addEvent(); 
         saveToRecord();
     }
 
     /**
      * Display list of friends
      */
-    public void listFriend(){
-
+    public void listFriend()
+    {
         System.out.print("---Your friend list---\n");
         System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-        friends.forEach((n) -> System.out.println(n));
+        
+        try // read user's info from text file
+        {
+            Scanner fileIn = new Scanner(new FileInputStream("mysocialprofile.txt"));
+
+            for(int i=0; i < 6; i++) // skip first 6 lines, which contain other information
+            {        
+                fileIn.nextLine();
+            }    
+
+            if (fileIn.hasNext()) // check if user has any friends on the 7th line
+            {
+                fileIn.useDelimiter("\n");
+                String friends = fileIn.next().replaceAll("\\[", "").replaceAll("\\]", "");
+                Scanner friendScanner = new Scanner(friends); // create second scanner to scan each friend's email
+                this.friends = new ArrayList<>();
+
+                friendScanner.useDelimiter(",");  
+                String friend;
+                // print out list of friends
+                while (friendScanner.hasNext()) 
+                {
+                    friend = friendScanner.next();
+                    System.out.print(friend + "\n");
+                    this.friends.add(friend);
+                }
+                friendScanner.close();
+                fileIn.close();
+            }
+            else System.out.println(""); // user hasn't added any friend yet
+        }
+        catch(FileNotFoundException ex) 
+        {
+            System.out.println("File not Found");
+            System.exit(0);        
+        }
+
         System.out.println("+++++++++++++++++++++++++++++++++++++++++");
     }
 
@@ -138,7 +179,7 @@ public class MySocialProfile
     {
         try 
         {
-			FileWriter fileOut = new FileWriter("newFile.txt");
+			FileWriter fileOut = new FileWriter("mysocialprofile.txt");
 			BufferedWriter buffWriter = new BufferedWriter(fileOut);
             
             //write to the file
@@ -163,7 +204,7 @@ public class MySocialProfile
             try
             {
                 System.out.println("+++++++++++++++++++++++++++++++++++++++++");
-                Scanner fileIn = new Scanner(new FileInputStream("newFile.txt"));
+                Scanner fileIn = new Scanner(new FileInputStream("mysocialprofile.txt"));
                 while (fileIn.hasNext()) { //while more of the input file is still available for reading
                     this.name = fileIn.nextLine();  //reads an entire line of input
                     System.out.println("Name: " + name);
@@ -182,6 +223,7 @@ public class MySocialProfile
                     Scanner eventsScanner = new Scanner(events);
                     String[] eventsArray = new String[10]; //will store the individual events for now
                     int i = 0; //array index counter
+                    //this.userEvents = new Event();
         
                     // so we tell the scanner to look for a quotation mark followed by a comma (",)
                     eventsScanner.useDelimiter("\","); //need the backslash in front of special characters like "
@@ -201,7 +243,7 @@ public class MySocialProfile
                         int hour = eScanner.nextInt();
                         int min = eScanner.nextInt();
         
-                        String date = Integer.toString(month) + '/' + Integer.toString(day) +'/' + Integer.toString(year) + ' ' + Integer.toString(hour) + ':' + Integer.toString(min);
+                        String date = Integer.toString(month) + '/' + Integer.toString(day) +'/' + Integer.toString(year) + ' ' + Integer.toString(hour) + ':'  + Integer.toString(min);
                         ArrayList<Integer> dateKey = new ArrayList<>();
                         dateKey.add(month);
                         dateKey.add(day);
@@ -215,8 +257,9 @@ public class MySocialProfile
                         if (!userEvents.passEvent(dateKey))
                         {
                             userEvents.addEvent(dateKey, desc);
-                            System.out.println(date + ": " + desc);
+                            System.out.println("   " + date + " : " + desc);
                         }
+                        //userEvents.toString();
                     }			
                     eventsScanner.close();
         
@@ -272,7 +315,7 @@ public class MySocialProfile
     public static void main(String[] args)
     {
         MySocialProfile profile = new MySocialProfile();
-        profile.createNewAcc();
+        //profile.createNewAcc();
         profile.loadprofile();
         profile.post();
         System.out.println(profile.friends);
