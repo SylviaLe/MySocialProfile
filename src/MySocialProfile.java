@@ -223,7 +223,7 @@ public class MySocialProfile
                     Scanner eventsScanner = new Scanner(events);
                     String[] eventsArray = new String[10]; //will store the individual events for now
                     int i = 0; //array index counter
-                    //this.userEvents = new Event();
+                    this.userEvents = new Event();
         
                     // so we tell the scanner to look for a quotation mark followed by a comma (",)
                     eventsScanner.useDelimiter("\","); //need the backslash in front of special characters like "
