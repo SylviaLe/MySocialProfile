@@ -117,7 +117,7 @@ public class SinglyLinkedList<E> {
 		{
 			while (current != null) 
 			{   // for each node,
-				stack = stack + '"' + current.getElement() + '"' + ',';  	// display it using the SNode.toString() method				
+				stack = "\"" + current.getElement() + "\"" + ',' + stack;  	// display it using the SNode.toString() method				
 				current = current.getNext();		//Fetch the next node in the list
 			}
 		}
