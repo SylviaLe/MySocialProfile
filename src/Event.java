@@ -1,12 +1,12 @@
 //Linh Nguyen, Sylvia Le, Sophie Le
-//File: DateComparator.java
+//File: dependencies.DateComparator.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
 
 import java.util.Scanner;
-//import java.util.Calendar;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
+import dependencies.*;
 
 
 /**
@@ -17,7 +17,7 @@ public class Event
 {
     /**
      * A heap-based priority queue to hold the event
-     * Use DateComparator class' instance as the key comparator
+     * Use dependencies.DateComparator class' instance as the key comparator
      */
     public HeapPriorityQueue<ArrayList<Integer>, String> events = new HeapPriorityQueue<>(new DateComparator()); 
     

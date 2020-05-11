@@ -1,14 +1,15 @@
 //Linh Nguyen, Sylvia Le, Sophie Le
-//File: DateComparator.java
+//File: dependencies.DateComparator.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
 
+package dependencies;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Calendar;
 
 /**
- * Class: DateComparator
+ * Class: dependencies.DateComparator
  * Implement Comparator Interface, used to compare dates according to their order in time
  */
 public class DateComparator implements Comparator<ArrayList<Integer>>
