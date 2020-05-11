@@ -146,11 +146,11 @@ public class Event
     // Testing methods
     public static void main(String[] args)
     {
-        Event myEvent = new Event();
-        myEvent.addEvent();
-        ArrayList<Integer> dateKey = new ArrayList<>();
+        //Event myEvent = new Event();
+        //myEvent.addEvent();
+        //ArrayList<Integer> dateKey = new ArrayList<>();
 
-        System.out.print(myEvent.toString());
+        //System.out.print(myEvent.toString());
         
     }
     
