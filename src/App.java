@@ -25,7 +25,16 @@ public class App
         
         while (!logout)
         {    // run until user chooses 5
-            System.out.println("\n[HOME SCREEN]\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
+            System.out.println("\n[HOME SCREEN]");
+            // display next event scheduled to take place
+            p.userEvents.getLatestEvent();
+            // display three recent posts
+            System.out.print("Recent posts: ");
+            p.posts.display();
+            // display list of upcoming events
+            System.out.println("Other events:\n");
+            p.userEvents.toString();
+            System.out.println("\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
             System.out.println("(4) Add/remove a friend\n(5) Log out\nEnter a number to proceed:");
             
             char choice = scan.next().charAt(0);
@@ -87,7 +96,7 @@ public class App
                     homeScreen(currentUser);
                     break;
                 case '3':       // exit program
-                    System.out.println("---Have a good day :P---");
+                    System.out.println("---Have a good day [¬°-°]¬ ---");
                     exit = true;
                     break;
                 default:
