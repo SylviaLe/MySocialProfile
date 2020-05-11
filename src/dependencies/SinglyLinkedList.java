@@ -114,7 +114,7 @@ public class SinglyLinkedList<E> {
 	{
 		String stack = "";
 		SNode<E> current = head;
-		int i = 0;
+		//int i = 0;
 		{
 			while (current != null) 
 			{   // for each node,
