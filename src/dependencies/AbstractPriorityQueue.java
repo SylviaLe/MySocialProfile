@@ -1,5 +1,5 @@
 //Linh Nguyen, Sylvia Le, Sophie Le
-//File: dependencies.DateComparator.java
+//File: dependencies.AbstractPriorityQueue.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
 
