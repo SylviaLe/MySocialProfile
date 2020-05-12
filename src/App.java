@@ -1,5 +1,5 @@
 //Linh Nguyen, Sylvia Le, Sophie Le
-//File: dependencies.DateComparator.java
+//File: App.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
 
@@ -26,15 +26,18 @@ public class App
         while (!logout)
         {    // run until user chooses 5
             System.out.println("\n[HOME SCREEN]");
+
             // display next event scheduled to take place
-            p.userEvents.getLatestEvent();
+            if (!p.userEvents.isEmpty()) p.userEvents.getLatestEvent();
+            else System.out.println("Upcoming event: ");
+           
             // display three recent posts
             System.out.print("Recent posts: ");
             p.posts.display();
             // display list of upcoming events
-            System.out.println("Other events:\n");
-            p.userEvents.toString();
-            System.out.println("\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
+            System.out.print("Other events: ");
+            System.out.print(p.userEvents.display());
+            System.out.println("\n\n(1) Post to timeline\n(2) Add an event\n(3) View list of friends");
             System.out.println("(4) Add/remove a friend\n(5) Log out\nEnter a number to proceed:");
             
             char choice = scan.next().charAt(0);
