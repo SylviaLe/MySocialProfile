@@ -1,5 +1,5 @@
 //Linh Nguyen, Sylvia Le, Sophie Le
-//File: dependencies.DateComparator.java
+//File: Event.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
 
@@ -108,18 +108,50 @@ public class Event
     {
         events.insert(date, desc);
     }
+
+    /**
+     * Check if queue is empty
+     * @return true if queue is empty, false otherwise
+     */
+    public boolean isEmpty(){
+    	return events.size() == 0;
+    }
+
     
     /**
     * Print out one upcoming event. The most imminent
     */
     public void getLatestEvent()
-    {
+    { 
         ArrayList<Integer> date = events.min().getKey();
         String desc = events.min().getValue();
         String dateString = Integer.toString(date.get(0)) + '/' + Integer.toString(date.get(1)) +'/' + Integer.toString(date.get(2)) + ' ' + Integer.toString(date.get(3)) + ':'  + Integer.toString(date.get(4));
-        System.out.println("Upcoming event: " + dateString + " : " + desc);
+        System.out.println("Upcoming event: " + dateString + " > " + desc);
     }
     
+    /**
+     * Print out all events in a user-friendly format, different than one in toString method
+     * @return a String object of all events
+     */
+    public String display()
+    {
+    	String writeS = "";
+        for (int i = 0; i < events.size(); i++)
+        {
+            ArrayList<Integer> date = events.heap.get(i).getKey();  //get the date (which function as a key)
+            String desc = events.heap.get(i).getValue();  //get the description
+
+            //generate a string for the event
+            String chunk1 = date.get(0) + "/" + date.get(1) + "/" + date.get(2) + " ";
+            String chunk2 = date.get(3) + ":" + date.get(4) + " > " + desc + ",";
+            String oneEvent = chunk1 + chunk2;
+
+            //concatenate to the previous
+            writeS = writeS + oneEvent;
+        }
+        return writeS;
+    }
+
     /**
      * Generate a string represents the list of event
      * @return a string generate the list of events
