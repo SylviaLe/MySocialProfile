@@ -1,5 +1,5 @@
 //Linh Nguyen, Sylvia Le, Sophie Le
-//File: MySocialProfile.java
+//File: dependencies.DateComparator.java
 //COM212-Prof.Tarimo
 //Due date: 5/13/20
 
@@ -71,7 +71,7 @@ public class MySocialProfile
      * Load the existed profile of previous user
      */
     public void loadprofile(){
-	    doStuff();  //call the private method
+	    displayProfile();  //call the private method
     }
 
     /**
@@ -198,7 +198,7 @@ public class MySocialProfile
     /**
      * Helper method to read info from files, add to the existing instance variable and display
      */
-    private void doStuff()
+    private void displayProfile()
     {       
             //this try-catch statement is needed around this file input code
             //because the FileInputStream may throw a FileNotFoundException
@@ -317,13 +317,13 @@ public class MySocialProfile
     // Testing methods
     public static void main(String[] args)
     {
-        MySocialProfile profile = new MySocialProfile();
+        //MySocialProfile profile = new MySocialProfile();
         //profile.createNewAcc();
-        profile.loadprofile();
-        profile.post();
-        System.out.println(profile.friends);
-        profile.manageFriend();
-        profile.addEvent();
-        profile.saveToRecord();
+        // profile.loadprofile();
+        // profile.post();
+        // System.out.println(profile.friends);
+        // profile.manageFriend();
+        // profile.addEvent();
+        // profile.saveToRecord();
     }
 }
