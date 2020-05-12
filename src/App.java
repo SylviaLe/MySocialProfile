@@ -77,7 +77,7 @@ public class App
         MySocialProfile currentUser = new MySocialProfile();
         boolean exit = false;       // flag check for exit
 
-        System.out.println("Welcome to MySocialProfile!");
+        System.out.println("\n*-*-*- Welcome to MySocialProfile! -*-*-*");
         while (!exit){      // run until user chooses e
             System.out.println("\n[MAIN MENU]\n(1) Create a new profile\n(2) Load an existing profile");
             System.out.println("(3) Exit program\nEnter a number to proceed:");
