@@ -160,7 +160,7 @@ public class MySocialProfile
         
         if (friends.contains(friend))  //if the friend exist in the list, remove
         {	
-        	System.out.print("This person is already in your list");
+        	System.out.println("This person is already in your list");
             friends.remove(friend);
             System.out.print("---You have removed " + friend + "---\n");
         }
@@ -258,7 +258,7 @@ public class MySocialProfile
                         if (!userEvents.passEvent(dateKey))
                         {
                             userEvents.addEvent(dateKey, desc);
-                            System.out.println("   " + date + " : " + desc);
+                            System.out.println("   " + date + " > " + desc);
                         }
                         //userEvents.toString();
                     }			
@@ -299,7 +299,8 @@ public class MySocialProfile
                         System.out.print(friend + ",");
                         this.friends.add(friend);
                     }
-		    userEvents.getLatestEvent();
+		    System.out.println("");
+		    if (!userEvents.isEmpty()) userEvents.getLatestEvent();
                     friendScanner.close();
                     System.out.println();
                     System.out.println("+++++++++++++++++++++++++++++++++++++++++");
