@@ -143,7 +143,7 @@ public class Event
 
             //generate a string for the event
             String chunk1 = date.get(0) + "/" + date.get(1) + "/" + date.get(2) + " ";
-            String chunk2 = date.get(3) + ":" + date.get(4) + " > " + desc + ",";
+            String chunk2 = date.get(3) + ":" + date.get(4) + " > " + desc + ", ";
             String oneEvent = chunk1 + chunk2;
 
             //concatenate to the previous
