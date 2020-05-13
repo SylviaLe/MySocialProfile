@@ -27,9 +27,12 @@
      > Therefore, there is no need for an remove() method
 
 - Current bugs and potential fix
-  + Quite confusing post display (don't know which is the oldest and newest, so the display and save can be quite messy)
-  
-- Notes
-User's posts: When displayed on console, user's posts are listed in an order such that the most recent post is on the left (sometimes it's quite messed up but that's the idea). Whereas, when they are written to mysocialprofile.txt file, the most recent post is on the right.
-
+  + Sometimes the post is note display to the right order
+    > Note: In the file, the latest post is on the rightmost; when display, the latest post must be display first
+  + If the number of events is above 4 or 5, the listing order is no-longer correct. 
+    > Since we used the textbook's implementation, we assumed that this implementation is closest to the java built-in priority queue. 
+    > In which case, this is rather a 'feature' of the heap, not a bug.
+    > According to this link https://stackoverflow.com/questions/36187631/java-priorityqueue-and-comparator-not-ordering-correctly 
+    > (or this link https://stackoverflow.com/questions/50154361/comparator-not-working-correctly-for-priorityqueue-java) (and some other link when type 'java priority queue comparator not working properly' in the Google Search bar),
+    > The heap only guarantee that the first item is the item with the minimum key (or maximum, in case of max heap). The rest of the heap might not be in perfect order.
   
