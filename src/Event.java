@@ -125,6 +125,11 @@ public class Event
     { 
         ArrayList<Integer> date = events.min().getKey();
         String desc = events.min().getValue();
+        while (passEvent(date)) {
+            events.removeMin();
+            date = events.min().getKey();
+            desc = events.min().getValue();
+        }
         String dateString = Integer.toString(date.get(0)) + '/' + Integer.toString(date.get(1)) +'/' + Integer.toString(date.get(2)) + ' ' + Integer.toString(date.get(3)) + ':'  + Integer.toString(date.get(4));
         System.out.println("Upcoming event: " + dateString + " > " + desc);
     }
@@ -138,16 +143,19 @@ public class Event
     	String writeS = "";
         for (int i = 0; i < events.size(); i++)
         {
+            
             ArrayList<Integer> date = events.heap.get(i).getKey();  //get the date (which function as a key)
             String desc = events.heap.get(i).getValue();  //get the description
+            if (passEvent(date)) writeS = writeS + "";
+            else {
+                //generate a string for the event
+                String chunk1 = date.get(0) + "/" + date.get(1) + "/" + date.get(2) + " ";
+                String chunk2 = date.get(3) + ":" + date.get(4) + " > " + desc + ", ";
+                String oneEvent = chunk1 + chunk2;
 
-            //generate a string for the event
-            String chunk1 = date.get(0) + "/" + date.get(1) + "/" + date.get(2) + " ";
-            String chunk2 = date.get(3) + ":" + date.get(4) + " > " + desc + ", ";
-            String oneEvent = chunk1 + chunk2;
-
-            //concatenate to the previous
-            writeS = writeS + oneEvent;
+                //concatenate to the previous
+                writeS = writeS + oneEvent;
+            }
         }
         return writeS;
     }
