@@ -24,35 +24,29 @@ public class DateComparator implements Comparator<ArrayList<Integer>>
    @Override
     public int compare(ArrayList<Integer> dateKeyA, ArrayList<Integer> dateKeyB)
     {
-        LocalDateTime dateA = LocalDateTime.of(dateKeyA.get(2), dateKeyA.get(0), dateKeyA.get(1), dateKeyA.get(3), dateKeyA.get(4));
-        LocalDateTime dateB = LocalDateTime.of(dateKeyB.get(2), dateKeyB.get(0), dateKeyB.get(1), dateKeyB.get(3), dateKeyB.get(4));
+        //get the date info from the arraylist and create an instance of Calendar class for it
+        Calendar dateA = Calendar.getInstance();
+        int yearA = (Integer) dateKeyA.get(2);
+        int monthA = (Integer) dateKeyA.get(0);
+        int dayA = (Integer) dateKeyA.get(1);
+        int hourA = (Integer) dateKeyA.get(3);
+        int minA = (Integer) dateKeyA.get(4);
+        dateA.set(yearA, monthA, dayA, hourA, minA);
 
-        if(dateA.isAfter(dateB)) return 1; //dateB precedes dateA
-        else if (dateA.isBefore(dateB)) return -1; //dateA precedes dateB
-        else return 0; //two date equals
-// //get the date info from the arraylist and create an instance of Calendar class for it
-        // Calendar dateA = Calendar.getInstance();
-        // int yearA = (Integer) dateKeyA.get(2);
-        // int monthA = (Integer) dateKeyA.get(0);
-        // int dayA = (Integer) dateKeyA.get(1);
-        // int hourA = (Integer) dateKeyA.get(3);
-        // int minA = (Integer) dateKeyA.get(4);
-        // dateA.set(yearA, monthA, dayA, hourA, minA);
+        Calendar dateB = Calendar.getInstance();
+        int yearB = (Integer) dateKeyB.get(2);
+        int monthB = (Integer) dateKeyB.get(0);
+        int dayB = (Integer) dateKeyB.get(1);
+        int hourB = (Integer) dateKeyB.get(3);
+        int minB = (Integer) dateKeyB.get(4);
+        dateB.set(yearB, monthB, dayB, hourB, minB);
 
-        // Calendar dateB = Calendar.getInstance();
-        // int yearB = (Integer) dateKeyB.get(2);
-        // int monthB = (Integer) dateKeyB.get(0);
-        // int dayB = (Integer) dateKeyB.get(1);
-        // int hourB = (Integer) dateKeyB.get(3);
-        // int minB = (Integer) dateKeyB.get(4);
-        // dateB.set(yearB, monthB, dayB, hourB, minB);
-
-        // //create instance of Calendar class for the current time
-        // Calendar now = Calendar.getInstance();
+        //create instance of Calendar class for the current time
+        Calendar now = Calendar.getInstance();
 
         // //use compare() to compare the date
         // //Take the current time as a mark. dateA precedes dateB if the time from now to dateA is shorter than the time from now to dateB
         // //int i = Long.compare((dateA.getTimeInMillis() - now.getTimeInMillis()), (dateB.getTimeInMillis() - now.getTimeInMillis()));
-        // return dateA.compareTo(dateB);
+        return dateA.compareTo(dateB);
     }
 }
