@@ -1,8 +1,8 @@
 # MySocialProfile notes
 - Files that you need to care about:
-  + MySocialProfile.java
-  + Event.java and dependencies.DateComparator.java
-  + App.java
+  + MySocialProfile.java: basic operation on a profile
+  + Event.java (manage the events list) and dependencies.DateComparator.java (the comparator for the heap)
+  + App.java: This is the user interface. Compile this and follow the instructions on the screen
   
 - Data structure used:
   + Name, email, password: String (email and password set the access modifier to private)
