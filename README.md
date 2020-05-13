@@ -35,4 +35,5 @@
     > According to this link https://stackoverflow.com/questions/36187631/java-priorityqueue-and-comparator-not-ordering-correctly 
     > (or this link https://stackoverflow.com/questions/50154361/comparator-not-working-correctly-for-priorityqueue-java) (and some other link when type 'java priority queue comparator not working properly' in the Google Search bar),
     > The heap only guarantee that the first item is the item with the minimum key (or maximum, in case of max heap). The rest of the heap might not be in perfect order.
+    > We manage to do some last minute fix, but the above explanation is for the case that it does not behave right =))))
   
