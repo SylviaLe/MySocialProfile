@@ -1,4 +1,9 @@
-# MySocialProfile notes
+# MySocialProfile
+
+A social profile manager in Java. The user profile is provided in mysocialprofile.txt. Functionalities include: create new account, view current account, posting to timelime, add an event, modify the friend list, log out.
+
+The detail implementation is as follow:
+
 - Files that you need to care about:
   + MySocialProfile.java: basic operation on a profile
   + Event.java (manage the events list) and dependencies.DateComparator.java (the comparator for the heap)
